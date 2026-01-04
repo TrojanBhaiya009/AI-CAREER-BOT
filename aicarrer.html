@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI Career Copilot</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#070b12;
+  --card:rgba(255,255,255,0.06);
+  --border:rgba(255,255,255,0.12);
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --grad:linear-gradient(135deg,#22d3ee,#6366f1,#8b5cf6);
+  --glow:0 0 40px rgba(99,102,241,.55);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;}
+body{background:var(--bg);color:var(--text);overflow-x:hidden;}
+section{padding:100px 8%;}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;width:100%;
+  padding:16px 8%;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(7,11,18,.85);backdrop-filter:blur(12px);z-index:1000;
+}
+nav h2{background:var(--grad);-webkit-background-clip:text;color:transparent;}
+nav ul{display:flex;gap:25px;list-style:none;}
+nav ul li a{position:relative;padding-bottom:4px;}
+nav ul li a::after{
+  content:"";position:absolute;left:0;bottom:0;width:0;height:2px;
+  background:var(--grad);transition:.35s;
+}
+nav ul li a:hover::after{width:100%;box-shadow:var(--glow);}
+
+/* BUTTON */
+.btn{
+  padding:15px 32px;border-radius:16px;
+  background:var(--grad);color:#020617;font-weight:800;
+  box-shadow:0 15px 45px rgba(99,102,241,.45);transition:.3s;
+}
+.btn:hover{transform:scale(1.08);box-shadow:0 0 60px rgba(99,102,241,.7);}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;position:relative;overflow:hidden;
+}
+.hero::before,.hero::after{
+  content:"";position:absolute;width:450px;height:450px;border-radius:50%;
+  filter:blur(120px);z-index:-1;
+}
+.hero::before{background:#6366f1;top:-120px;left:-120px;}
+.hero::after{background:#22d3ee;bottom:-120px;right:-120px;}
+
+.hero-badge{
+  display:inline-block;padding:8px 18px;border-radius:999px;
+  background:rgba(99,102,241,.15);border:1px solid rgba(255,255,255,.12);
+  font-size:.85rem;margin-bottom:25px;
+}
+.hero h1{font-size:4.2rem;font-weight:900;line-height:1.05;margin-bottom:25px;}
+.hero h1 span{
+  background:var(--grad);-webkit-background-clip:text;color:transparent;
+  text-shadow:0 0 35px rgba(99,102,241,.5);
+}
+.hero p{max-width:780px;margin:0 auto 35px;color:var(--muted);font-size:1.15rem;}
+.hero-actions{display:flex;justify-content:center;gap:20px;margin-bottom:55px;}
+.hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;}
+.stat h3{font-size:2rem;background:var(--grad);-webkit-background-clip:text;color:transparent;}
+.stat p{font-size:.9rem;color:var(--muted);}
+
+/* ========================= */
+/* 🔥 KADAK FEATURES */
+.features-kadak{text-align:left;}
+.features-head{text-align:center;max-width:900px;margin:0 auto 80px;}
+.features-head h2{font-size:3.4rem;font-weight:900;line-height:1.1;}
+.features-head span{background:var(--grad);-webkit-background-clip:text;color:transparent;}
+.features-head p{margin-top:18px;font-size:1.1rem;color:var(--muted);}
+.features-kadak-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;}
+.fk-card{position:relative;padding:40px 35px;border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.15);transition:.45s;overflow:hidden;}
+.fk-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top,#6366f1,transparent 65%);opacity:.18;transition:.45s;}
+.fk-card:hover::before{opacity:.45;}
+.fk-card:hover{transform:translateY(-18px) scale(1.05);box-shadow:0 0 80px rgba(99,102,241,.7);}
+.fk-card.highlight{border-color:#6366f1;box-shadow:0 0 50px rgba(99,102,241,.45);}
+.fk-tag{display:inline-block;padding:6px 14px;font-size:.7rem;letter-spacing:1px;border-radius:999px;background:rgba(99,102,241,.18);color:#c7d2fe;margin-bottom:18px;}
+.fk-card h3{font-size:1.4rem;margin-bottom:14px;}
+.fk-card p{font-size:.98rem;color:var(--muted);line-height:1.6;}
+
+/* ========================= */
+/* 🔥 KADAK HOW IT WORKS */
+.how-kadak{text-align:center;}
+.how-head{max-width:800px;margin:0 auto 60px;}
+.how-head h2{font-size:3rem;font-weight:900;line-height:1.1;}
+.how-head h2 span{background:var(--grad);-webkit-background-clip:text;color:transparent;}
+.how-head p{margin-top:15px;font-size:1.05rem;color:var(--muted);}
+.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:35px;}
+.how-step-card{position:relative;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:30px 25px;transition:.4s;overflow:hidden;}
+.how-step-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top,#6366f1,transparent 70%);opacity:.15;transition:.4s;}
+.how-step-card:hover::before{opacity:.4;}
+.how-step-card:hover{transform:translateY(-14px) scale(1.05);box-shadow:0 0 60px rgba(99,102,241,.6);}
+.how-step-card.highlight{border-color:#6366f1;box-shadow:0 0 50px rgba(99,102,241,.45);}
+.circle{width:55px;height:55px;border-radius:50%;background:var(--grad);margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#020617;font-size:1.4rem;text-shadow:0 0 15px rgba(99,102,241,.5);}
+.how-step-card h3{font-size:1.25rem;margin-bottom:12px;}
+.how-step-card p{font-size:.95rem;color:var(--muted);line-height:1.5;}
+
+/* ========================= */
+/* 🔥 KADAK TECH STACK */
+.tech-kadak{text-align:center;margin-top:80px;}
+.tech-head{max-width:900px;margin:0 auto 60px;}
+.tech-head h2{font-size:3rem;font-weight:900;line-height:1.1;}
+.tech-head h2 span{background:var(--grad);-webkit-background-clip:text;color:transparent;}
+.tech-head p{margin-top:15px;font-size:1.05rem;color:var(--muted);}
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:30px;}
+.tech-card{position:relative;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:25px 18px;transition:.4s;overflow:hidden;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.7px;}
+.tech-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top,#6366f1,transparent 70%);opacity:.12;transition:.4s;}
+.tech-card:hover::before{opacity:.4;}
+.tech-card:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 0 50px rgba(99,102,241,.6);}
+
+/* ========================= */
+/* 🔥 KADAK CTA */
+.cta-kadak{text-align:center;padding:100px 8%;position:relative;overflow:hidden;}
+.cta-kadak::before{
+  content:"";position:absolute;top:-60px;left:-60px;width:300px;height:300px;
+  border-radius:50%;background:#6366f1;filter:blur(120px);opacity:.3;z-index:-1;
+  animation:glowMove 8s ease-in-out infinite alternate;
+}
+.cta-kadak::after{
+  content:"";position:absolute;bottom:-60px;right:-60px;width:300px;height:300px;
+  border-radius:50%;background:#22d3ee;filter:blur(120px);opacity:.25;z-index:-1;
+  animation:glowMove 10s ease-in-out infinite alternate-reverse;
+}
+@keyframes glowMove{0%{transform:translate(0,0);}50%{transform:translate(20px,20px);}100%{transform:translate(0,0);}}
+.cta-head h2{font-size:3rem;font-weight:900;line-height:1.1;}
+.cta-head h2 span{background:var(--grad);-webkit-background-clip:text;color:transparent;text-shadow:0 0 35px rgba(99,102,241,.5);}
+.cta-head p{color:var(--muted);font-size:1.05rem;margin:20px auto 35px;max-width:750px;}
+.cta-head .btn{font-size:1.05rem;box-shadow:0 15px 45px rgba(99,102,241,.45);transition:.4s;}
+.cta-head .btn:hover{transform:scale(1.1);box-shadow:0 0 70px rgba(99,102,241,.75);}
+
+/* ========================= */
+/* 🔥 KADAK FOOTER */
+.footer-kadak{text-align:center;padding:30px 8%;font-size:.9rem;color:var(--muted);border-top:1px solid rgba(255,255,255,.1);position:relative;overflow:hidden;}
+.footer-kadak::before{content:"";position:absolute;top:-40px;left:50%;width:200px;height:200px;background:var(--grad);filter:blur(100px);opacity:.15;transform:translateX(-50%);}
+.footer-kadak::after{content:"";position:absolute;bottom:-40px;right:50%;width:200px;height:200px;background:var(--grad);filter:blur(100px);opacity:.1;transform:translateX(50%);}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <h2>AI Career Copilot</h2>
+  <ul>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How it Works</a></li>
+    <li><a href="#tech">Tech</a></li>
+  </ul>
+  <a class="btn" href="#start">Get Started</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="start">
+  <div>
+    <div class="hero-badge">🚀 Microsoft Imagine Cup 2026 Project</div>
+    <h1>Your Personal <span>AI Career Copilot</span></h1>
+    <p>An intelligent platform that analyzes your skills and builds a job-ready roadmap.</p>
+    <div class="hero-actions">
+      <a class="btn">Start Free →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><h3>10K+</h3><p>Students</p></div>
+      <div class="stat"><h3>500+</h3><p>Roadmaps</p></div>
+      <div class="stat"><h3>90%</h3><p>Clarity</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 🔥 FEATURES -->
+<section id="features" class="features-kadak">
+  <div class="features-head">
+    <h2>Not Features.<br><span>An AI Career Engine.</span></h2>
+    <p>Every module is designed to move you closer to a real job.</p>
+  </div>
+
+  <div class="features-kadak-grid">
+    <div class="fk-card">
+      <span class="fk-tag">CORE AI</span>
+      <h3>Resume Intelligence Engine</h3>
+      <p>Deep NLP extracts skills, experience and hidden gaps.</p>
+    </div>
+
+    <div class="fk-card highlight">
+      <span class="fk-tag">REAL DATA</span>
+      <h3>GitHub Skill Radar</h3>
+      <p>Analyzes commits, tech stack and real project depth.</p>
+    </div>
+
+    <div class="fk-card">
+      <span class="fk-tag">ML POWERED</span>
+      <h3>Skill Gap Intelligence</h3>
+      <p>Compares your profile with real industry roles.</p>
+    </div>
+
+    <div class="fk-card">
+      <span class="fk-tag">CAREER MAP</span>
+      <h3>30-60-90 Day Roadmap</h3>
+      <p>AI generated execution plan with timelines.</p>
+    </div>
+
+    <div class="fk-card highlight">
+      <span class="fk-tag">PORTFOLIO</span>
+      <h3>Project-to-Job Mapping</h3>
+      <p>Projects that directly map to job descriptions.</p>
+    </div>
+
+    <div class="fk-card">
+      <span class="fk-tag">INSIGHTS</span>
+      <h3>Career Readiness Score</h3>
+      <p>Single metric showing how hire-ready you are.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 🔥 HOW IT WORKS -->
+<section id="how" class="how-kadak">
+  <div class="how-head">
+    <h2>From Skills to <span>Dream Job</span> in 4 Steps</h2>
+    <p>AI guides you step by step from profile analysis to actionable roadmap.</p>
+  </div>
+
+  <div class="how-grid">
+    <div class="how-step-card">
+      <div class="circle">1</div>
+      <h3>Upload Resume & GitHub</h3>
+      <p>Provide your resume and GitHub to let AI understand your real skills.</p>
+    </div>
+
+    <div class="how-step-card highlight">
+      <div class="circle">2</div>
+      <h3>AI Skill Analysis</h3>
+      <p>AI detects technical + soft skills, projects, and hidden gaps.</p>
+    </div>
+
+    <div class="how-step-card">
+      <div class="circle">3</div>
+      <h3>Gap Identification</h3>
+      <p>Compare your current skills with target roles in the industry.</p>
+    </div>
+
+    <div class="how-step-card">
+      <div class="circle">4</div>
+      <h3>Get Actionable Roadmap</h3>
+      <p>Receive a personalized 30-60-90 day roadmap to land your dream job.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 🔥 TECH STACK -->
+<section id="tech" class="tech-kadak">
+  <div class="tech-head">
+    <h2>Built With <span>Modern Tech Stack</span></h2>
+    <p>The tools and technologies that power your AI career journey.</p>
+  </div>
+
+  <div class="tech-grid">
+    <div class="tech-card">Next.js</div>
+    <div class="tech-card">TypeScript</div>
+    <div class="tech-card">Tailwind CSS</div>
+    <div class="tech-card">OpenAI API</div>
+    <div class="tech-card">Supabase</div>
+    <div class="tech-card">Clerk Auth</div>
+    <div class="tech-card">Python Backend</div>
+    <div class="tech-card">Vercel</div>
+  </div>
+</section>
+
+<!-- 🔥 CTA -->
+<section class="cta-kadak">
+  <div class="cta-head">
+    <h2>Ready to Transform Your <span>Career?</span></h2>
+    <p>Join thousands of students closing skill gaps and landing real jobs.</p>
+    <a class="btn">Get Started Free →</a>
+  </div>
+</section>
+
+<!-- 🔥 FOOTER -->
+<footer class="footer-kadak">
+  © 2026 AI Career Copilot
+</footer>
+
+<script>
+document.querySelectorAll("a[href^='#']").forEach(link=>{
+  link.addEventListener("click",e=>{
+    e.preventDefault();
+    document.querySelector(link.getAttribute("href")).scrollIntoView({behavior:"smooth"});
+  });
+});
+</script>
+
+</body>
+</html>
