@@ -388,10 +388,10 @@ export default function SkillInput() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <FileText className="h-5 w-5" />
-                  Upload or Paste Your Resume
+                  Upload Your Resume
                 </CardTitle>
                 <CardDescription>
-                  Upload a resume file or paste the content. We'll extract your skills automatically.
+                  Upload a resume file. We'll extract your skills automatically.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -417,31 +417,6 @@ export default function SkillInput() {
                   )}
                   <p className="text-xs text-muted-foreground mt-1">
                     Supported formats: PDF, DOC, DOCX, TXT (max 5MB)
-                  </p>
-                </div>
-
-                <div className="relative">
-                  <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t" />
-                  </div>
-                  <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-background px-2 text-muted-foreground">Or paste content</span>
-                  </div>
-                </div>
-
-                <div>
-                  <Label htmlFor="resume-text" className="text-sm font-medium mb-2 block">
-                    Paste Resume Content
-                  </Label>
-                  <Textarea
-                    id="resume-text"
-                    placeholder="Paste your resume content here..."
-                    value={resumeText}
-                    onChange={(e) => setResumeText(e.target.value)}
-                    className="min-h-[250px] font-mono text-sm"
-                  />
-                  <p className="text-xs text-muted-foreground mt-2">
-                    {resumeText.length > 0 ? `${resumeText.length} characters` : 'No content yet'}
                   </p>
                 </div>
               </CardContent>
